@@ -3,7 +3,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../Backend/Auth.dart';
+import '../Utils/Utils.dart';
 import '../Widgets/Text_Field_Input.dart';
+import 'Home_Page.dart';
 import 'Login_Screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -18,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   Uint8List? _image;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -25,6 +29,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController.dispose();
     _passwordController.dispose();
     _usernameController.dispose();
+  }
+
+  void signUpUser() async {
+    // set loading to true
+    setState(() {
+      _isLoading = true;
+    });
+
+    // signup user using our authmethodds
+    String res = await Auth().signUpUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+        // file: _image!
+        );
+    // if string returned is sucess, user has been created
+    if (res == "success") {
+      setState(() {
+        _isLoading = false;
+      });
+      // navigate to the home screen
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      // show the error
+      showSnackBar(context, res);
+    }
   }
 
   @override
@@ -109,8 +146,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               InkWell(
                 child: Container(
-                  child: const Text(
+                 child: !_isLoading
+                      ? const Text(
                           'Sign up',
+                        )
+                      : const CircularProgressIndicator(
+                          color: Colors.lightBlueAccent,
                         ),
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -122,9 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: Colors.lightBlue,
                   ),
                 ),
-                onTap: (() {
-                  
-                }),
+                onTap: signUpUser,
               ),
               const SizedBox(
                 height: 12,
