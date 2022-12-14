@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../Backend/Auth.dart';
 import '../Utils/Utils.dart';
@@ -42,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: _emailController.text,
         password: _passwordController.text,
         username: _usernameController.text,
-        // file: _image!
+        file: _image!
         );
     // if string returned is sucess, user has been created
     if (res == "success") {
@@ -62,6 +63,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // show the error
       showSnackBar(context, res);
     }
+  }
+
+  selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    // set state because we need to display the image we selected on the circle avatar
+    setState(() {
+      _image = im;
+    });
   }
 
   @override
@@ -105,9 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: (() {
-                        
-                      }),
+                      onPressed: selectImage,
                       icon: const Icon(Icons.add_a_photo),
                     ),
                   )

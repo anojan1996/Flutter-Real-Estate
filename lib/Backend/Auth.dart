@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'Storage.dart';
+
 class Auth {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,7 +25,7 @@ class Auth {
     required String email,
     required String password,
     required String username,
-    // required Uint8List file,
+    required Uint8List file,
   }) async {
     String res = "Some error Occurred";
     try {
@@ -36,13 +38,13 @@ class Auth {
           password: password,
         );
 
-        // String photoUrl = await StorageMethods()
-        //     .uploadImageToStorage('profilePics', file, false);
+        String photoUrl = await StorageMethods()
+            .uploadImageToStorage('profilePics', file, false);
 
         model.User _user = model.User(
           username: username,
           uid: cred.user!.uid,
-          // photoUrl: photoUrl,
+          photoUrl: photoUrl,
           email: email,
         );
 
