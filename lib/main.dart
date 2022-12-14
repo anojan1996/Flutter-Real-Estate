@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:real_estate/Screens/Add_Post.dart';
 import 'package:real_estate/Screens/Login_Screen.dart';
 
 import 'Screens/Profile_Screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightBlue,
         scaffoldBackgroundColor: Colors.white70, 
       ),
-      home: const LoginScreen(),
+      home: const AddPost(),
     );
   }
 }

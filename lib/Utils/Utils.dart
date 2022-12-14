@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:real_estate/Screens/Add_Post.dart';
 
 import '../Screens/Profile_Screen.dart';
 
@@ -14,9 +15,9 @@ showSnackBar(BuildContext context, String text) {
 List<Widget> homeScreenItems = [
   const Text('Feed Screen'),
   const Text('Search Screen'),
-  const Text('Add Post'),
+  const AddPost(),
   const Text('notifications'),
-  ProfileScreen(),
+  const ProfileScreen(),
 ];
 
 pickImage(ImageSource source) async {
