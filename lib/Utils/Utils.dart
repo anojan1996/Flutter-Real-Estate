@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:real_estate/Screens/Add_Post.dart';
 
+import '../Screens/Post.dart';
 import '../Screens/Profile_Screen.dart';
 
 showSnackBar(BuildContext context, String text) {
@@ -13,7 +14,7 @@ showSnackBar(BuildContext context, String text) {
 }
 
 List<Widget> homeScreenItems = [
-  const Text('Feed Screen'),
+  const Post(),
   const Text('Search Screen'),
   const AddPost(),
   const Text('notifications'),
