@@ -9,7 +9,7 @@ class Auth {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // get user details
+  
   Future<model.User> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 
@@ -19,7 +19,7 @@ class Auth {
     return model.User.fromSnap(documentSnapshot);
   }
 
-  // Signing Up User
+ 
 
   Future<String> signUpUser({
     required String email,
@@ -32,7 +32,7 @@ class Auth {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           username.isNotEmpty) {
-        // registering user in auth with email and password
+       
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
@@ -64,7 +64,7 @@ class Auth {
     return res;
   }
 
-  // logging in user
+  
   Future<String> loginUser({
     required String email,
     required String password,
@@ -72,7 +72,7 @@ class Auth {
     String res = "Some error Occurred";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
-        // logging in user with email and password
+        
         await _auth.signInWithEmailAndPassword(
           email: email,
           password: password,

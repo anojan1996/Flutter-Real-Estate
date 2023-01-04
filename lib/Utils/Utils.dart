@@ -4,6 +4,7 @@ import 'package:real_estate/Screens/Add_Post.dart';
 
 import '../Screens/Post.dart';
 import '../Screens/Profile_Screen.dart';
+import '../Screens/Notification.dart';
 
 showSnackBar(BuildContext context, String text) {
   return ScaffoldMessenger.of(context).showSnackBar(
@@ -17,7 +18,7 @@ List<Widget> homeScreenItems = [
   const Post(),
   const Text('Search Screen'),
   const AddPost(),
-  const Text('notifications'),
+  const Text('Likes'),
   const ProfileScreen(),
 ];
 
