@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:real_estate/Screens/Notification.dart';
+
+import '../Backend/FireStore.dart';
+import '../Utils/Utils.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -15,6 +19,17 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
+
+   deletePost(String postId) async {
+    try {
+      await FireStoreMethods().deletePost(postId);
+    } catch (err) {
+      showSnackBar(
+        context,
+        err.toString(),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +84,47 @@ class _PostCardState extends State<PostCard> {
                       ),
                     ),
                   ),
+                  widget.snap['uid'].toString() == FirebaseAuth.instance.currentUser!.uid
+                    ? IconButton(
+                        onPressed: () {
+                          showDialog(
+                            useRootNavigator: false,
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: ListView(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shrinkWrap: true,
+                                    children: [
+                                      'Delete',
+                                    ]
+                                        .map(
+                                          (e) => InkWell(
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 12,
+                                                        horizontal: 16),
+                                                child: Text(e),
+                                              ),
+                                              onTap: () {
+                                                deletePost(
+                                                  widget.snap['postId']
+                                                      .toString(),
+                                                );
+                                                // remove the dialog box
+                                                Navigator.of(context).pop();
+                                              }),
+                                        )
+                                        .toList()),
+                              );
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.more_vert),
+                      )
+                    : Container(),
                 ],
               ),
             ),
