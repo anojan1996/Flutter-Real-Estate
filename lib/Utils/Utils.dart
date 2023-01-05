@@ -16,9 +16,9 @@ showSnackBar(BuildContext context, String text) {
 
 List<Widget> homeScreenItems = [
   const Post(),
-  const Text('Search Screen'),
+  // const Text('Search Screen'),
   const AddPost(),
-  const Text('Likes'),
+  // const Text('Likes'),
   const ProfileScreen(),
 ];
 

@@ -55,32 +55,32 @@ class _HomePageState extends State<HomePage> {
             label: '',
             backgroundColor: Colors.black,
           ),
+          // BottomNavigationBarItem(
+          //     icon: Icon(
+          //       Icons.search,
+          //       color: (_page == 1) ? Colors.black : Colors.grey,
+          //     ),
+          //     label: '',
+          //     backgroundColor: Colors.black),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.search,
+                Icons.add_circle,
                 color: (_page == 1) ? Colors.black : Colors.grey,
               ),
               label: '',
               backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_circle,
-                color: (_page == 2) ? Colors.black : Colors.grey,
-              ),
-              label: '',
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              color: (_page == 3) ? Colors.black : Colors.grey,
-            ),
-            label: '',
-            backgroundColor: Colors.black,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.favorite,
+          //     color: (_page == 3) ? Colors.black : Colors.grey,
+          //   ),
+          //   label: '',
+          //   backgroundColor: Colors.black,
+          // ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: (_page == 4) ? Colors.black : Colors.grey,
+              color: (_page == 3) ? Colors.black : Colors.grey,
             ),
             label: '',
             backgroundColor: Colors.black,
